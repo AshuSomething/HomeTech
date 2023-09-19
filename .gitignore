@@ -399,47 +399,47 @@ FodyWeavers.xsd
 
 
 
-#Angular
+# Angular
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+Angular/HomeTech/dist
+Angular/HomeTech/tmp
+Angular/HomeTech/out-tsc
+Angular/HomeTech/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+Angular/HomeTech/node_modules
+Angular/HomeTech/npm-debug.log
+Angular/HomeTech/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+Angular/HomeTech/.idea/
+Angular/HomeTech/.project
+Angular/HomeTech/.classpath
+Angular/HomeTech/.c9/
+Angular/HomeTech/*.launch
+Angular/HomeTech/.settings/
+Angular/HomeTech/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+Angular/HomeTech/.vscode/*
+!Angular/HomeTech/.vscode/settings.json
+!Angular/HomeTech/.vscode/tasks.json
+!Angular/HomeTech/.vscode/launch.json
+!Angular/HomeTech/.vscode/extensions.json
+Angular/HomeTech/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+Angular/HomeTech/.angular/cache
+Angular/HomeTech/.sass-cache/
+Angular/HomeTech/connect.lock
+Angular/HomeTech/coverage
+Angular/HomeTech/libpeerconnection.log
+Angular/HomeTech/testem.log
+Angular/HomeTech/typings
 
 # System files
-.DS_Store
-Thumbs.db
+Angular/HomeTech/.DS_Store
+Angular/HomeTech/Thumbs.db
