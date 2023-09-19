@@ -38,11 +38,3 @@ app.MapControllers();
 
 app.Run();
 
-void AddDefaultRoles()
-{
-    using( var scope = app.Services.CreateScope())
-    {
-        var db = scope.ServiceProvider.GetRequiredService<AppDBContext>();
-        var _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-    }
-}

@@ -25,9 +25,9 @@ namespace HomeTech.Services.AuthAPI.Services
 
         public async Task<string> Registration(RegistrationRequestDto registrationRequestDto)
         {
-            if (await _roleManager.RoleExistsAsync(registrationRequestDto.RoleName))
+            if (!await _roleManager.RoleExistsAsync(registrationRequestDto.RoleName))
             {
-                return "Role your trying to take does not exist.";
+                await _roleManager.CreateAsync(new IdentityRole(registrationRequestDto.RoleName));
             }
 
             ApplicationUser user = new()
@@ -42,26 +42,16 @@ namespace HomeTech.Services.AuthAPI.Services
             try
             {
                 var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
-                if(!result.Succeeded)
+                await _userManager.AddToRoleAsync(user, registrationRequestDto.RoleName);
+                if (!result.Succeeded)
                 {
-                    /*var userToReturn = _db.applicationUsers.First(u => u.Email ==  registrationRequestDto.Email);
-
-                    UserDto userDto = new()
-                    {
-                        Id = userToReturn.Id,
-                        Name = userToReturn.Name,
-                        UserName = userToReturn.UserName,
-                        Email = userToReturn.Email,
-                        PhoneNumber = userToReturn.PhoneNumber
-                    };
-
-                    return userDto;*/
                     return result.Errors.FirstOrDefault().Description;
                 }
             }catch(Exception ex)
             {
                 return ex.Message;
             }
+            
             return "user registered succesfully";
         }
 
