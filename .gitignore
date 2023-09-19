@@ -425,10 +425,10 @@ Angular/HomeTech/*.sublime-workspace
 
 # Visual Studio Code
 Angular/HomeTech/.vscode/*
-!Angular/HomeTech/.vscode/settings.json
-!Angular/HomeTech/.vscode/tasks.json
-!Angular/HomeTech/.vscode/launch.json
-!Angular/HomeTech/.vscode/extensions.json
+# !Angular/HomeTech/.vscode/settings.json
+# !Angular/HomeTech/.vscode/tasks.json
+# !Angular/HomeTech/.vscode/launch.json
+# !Angular/HomeTech/.vscode/extensions.json
 Angular/HomeTech/.history/*
 
 # Miscellaneous
