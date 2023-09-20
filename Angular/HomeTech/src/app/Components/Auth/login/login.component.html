@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="container-fluid col-4">
+    <h1>Login</h1>
+
+    <form #loginForm="ngForm">
+        <mat-form-field class="form-group">
+            <mat-label for="UserName">UserName</mat-label>
+            <input matInput type="text" name="UserName" required #UserName="ngModel" id="UserName"
+                [(ngModel)]="userModel.UserName">
+            <mat-error *ngIf="UserName.invalid && UserName.touched">UserName is Required</mat-error>
+        </mat-form-field><br>
+        <mat-form-field class="form-group">
+            <mat-label for="Password">Password</mat-label>
+            <input matInput type="password" name="Password" id="Password" required [(ngModel)]="userModel.Password"
+                #Password="ngModel" pattern="^.{8,15}$">
+            <mat-error *ngIf="Password.errors && (Password.invalid || Password.touched)">
+                <span *ngIf="Password.errors['required']">Password is required</span>
+                <span *ngIf="Password.errors['pattern']">Password must contain 8 to 15 characters</span>
+            </mat-error>
+        </mat-form-field><br>
+        <br>
+        <button [disabled]="loginForm.form.invalid" class="mb-3 mat-raised-button mat-primary">Login</button>
+    </form>
+</div>
