@@ -16,7 +16,7 @@ namespace HomeTech.Services.AuthAPI.Services
         {
             _jwtOptions = jwtOptions.Value;
         }
-        public string GenerateToken(ApplicationUser applicationUser)
+        public string GenerateToken(ApplicationUser applicationUser, string role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -26,7 +26,8 @@ namespace HomeTech.Services.AuthAPI.Services
             {
                 new Claim(JwtRegisteredClaimNames.Name, applicationUser.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, applicationUser.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id)
+                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

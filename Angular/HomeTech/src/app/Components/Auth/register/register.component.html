@@ -1,57 +1,58 @@
-<div class="container-fluid col-4">
-    <h2>Registration Form</h2>
-
+<h1>Registration Form</h1>
+<mat-card>
     <form #userForm="ngForm">
-        <mat-form-field class="form-group">
+
+        <mat-form-field class="fields">
             <mat-label for="UserName">UserName</mat-label>
             <input matInput type="text" name="UserName" required #UserName="ngModel" id="UserName"
-                [(ngModel)]="userModel.UserName">
+                [(ngModel)]="userModel.UserName" autocomplete="off">
             <mat-error *ngIf="UserName.invalid && UserName.touched">UserName is Required</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-group">
+        <mat-form-field class="fields">
             <mat-label for="Email">Email Id</mat-label>
-            <input matInput type="email" name="Email" id="Email" required #Email="ngModel"
-                [(ngModel)]="userModel.Email">
+            <input matInput type="email" name="Email" id="Email" required #Email="ngModel" [(ngModel)]="userModel.Email"
+                autocomplete="off">
             <mat-error *ngIf="Email.invalid && Email.touched">Email Id is Required</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-group">
+        <mat-form-field class="fields">
             <mat-label for="Name">Name</mat-label>
-            <input matInput type="text" name="Name" required #Name="ngModel" id="Name" [(ngModel)]="userModel.Name">
+            <input matInput type="text" name="Name" required #Name="ngModel" id="Name" [(ngModel)]="userModel.Name"
+                autocomplete="off">
             <mat-error *ngIf="Name.invalid && Name.touched">Name is Required</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-group">
+        <mat-form-field class="fields">
             <mat-label for="PhoneNumber">Phone Number</mat-label>
             <input matInput type="tel" name="PhoneNumber" #PhoneNumber="ngModel" pattern="^\d{10}$" required
-                id="PhoneNumber" [(ngModel)]="userModel.PhoneNumber">
+                id="PhoneNumber" [(ngModel)]="userModel.PhoneNumber" autocomplete="off">
             <mat-error *ngIf="PhoneNumber.errors && (PhoneNumber.invalid || PhoneNumber.touched)">
                 <span *ngIf="PhoneNumber.errors['required']">Phone Number is required</span>
                 <span *ngIf="PhoneNumber.errors['pattern']">Phone Number must be 10 digits</span>
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-group">
+        <mat-form-field class="fields">
             <mat-label for="Password">Password</mat-label>
             <input matInput type="password" name="Password" id="Password" required [(ngModel)]="userModel.Password"
-                #Password="ngModel" pattern="^.{8,15}$">
+                #Password="ngModel" pattern="^.{8,15}$" autocomplete="off">
             <mat-error *ngIf="Password.errors && (Password.invalid || Password.touched)">
                 <span *ngIf="Password.errors['required']">Password is required</span>
                 <span *ngIf="Password.errors['pattern']">Password must contain 8 to 15 characters</span>
             </mat-error>
         </mat-form-field>
 
-        <div class="form-group">
-            <mat-label>Registering as</mat-label>
-            <br>
+        <div class="fields" style="display: inline-block;">
+            <mat-label style="color: lightgrey;">Registering as :</mat-label>
             <mat-radio-group name="RoleName" [(ngModel)]="userModel.RoleName">
-                <mat-radio-button class="form-check-input" value="Customer">Customer</mat-radio-button>
-                <mat-radio-button class="form-check-input" value="Technician">Technician</mat-radio-button>
+                <mat-radio-button value="Customer">Customer</mat-radio-button>
+                <mat-radio-button value="Technician">Technician</mat-radio-button>
             </mat-radio-group>
         </div>
-        <br>
 
-        <button [disabled]="userForm.form.invalid" class="mb-3 mat-raised-button mat-primary">Submit</button>
+
+        <button [disabled]="userForm.form.invalid" mat-raised-button color="primary" class="button"
+            (click)="registerUser(); resetUserForm(userForm)">Submit</button>
     </form>
-</div>
+</mat-card>

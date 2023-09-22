@@ -6,5 +6,6 @@ namespace HomeTech.Services.AuthAPI.Services.IServices
     {
         Task<string> Registration(RegistrationRequestDto registrationRequestDto);
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
+        Task<string> GetUserRole(string userId);
     }
 }

@@ -2,6 +2,23 @@
     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
     <span>HomeTech</span>
     <span class="example-spacer"></span>
-    <a mat-button routerLink="register">Register</a>
-    <a mat-button routerLink="login">Login</a>
+
+    <!-- Without login -->
+    <a mat-button *ngIf="!getauthService().loggedIn()" routerLink="register">Register</a>
+    <a mat-button *ngIf="!getauthService().loggedIn()" routerLink="login">Login</a>
+
+
+    <!-- Coustmer logged in -->
+    <a mat-button
+        *ngIf="getauthService().loggedIn() && (getauthService().getJwtData().role === 'Customer'); else technicianLink">Create
+        requests</a>
+
+    <!-- Technician looged in -->
+    <ng-template #technicianLink><a mat-button *ngIf="getauthService().loggedIn()">Select requests</a></ng-template>
+
+    <!-- Logged -->
+    <a mat-button *ngIf="getauthService().loggedIn()">My requests</a>
+    <a mat-button *ngIf="getauthService().loggedIn()" routerLink="dashboard">My Profile</a>
+    <a mat-button *ngIf="getauthService().loggedIn()" routerLink="login"
+        (click)="getauthService().logOutUser()">Logout</a>
 </mat-toolbar>

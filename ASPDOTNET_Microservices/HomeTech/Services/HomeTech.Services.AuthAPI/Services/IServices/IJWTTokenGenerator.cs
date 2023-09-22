@@ -4,6 +4,6 @@ namespace HomeTech.Services.AuthAPI.Services.IServices
 {
     public interface IJWTTokenGenerator
     {
-        string GenerateToken(ApplicationUser applicationUser);
+        string GenerateToken(ApplicationUser applicationUser, string role);
     }
 }
