@@ -10,7 +10,8 @@
 
     <!-- Coustmer logged in -->
     <a mat-button
-        *ngIf="getauthService().loggedIn() && (getauthService().getJwtData().role === 'Customer'); else technicianLink">Create
+        *ngIf="getauthService().loggedIn() && (getauthService().getJwtData().role === 'Customer'); else technicianLink"
+        routerLink="createRequest">Create
         requests</a>
 
     <!-- Technician looged in -->

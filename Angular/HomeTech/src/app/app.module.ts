@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 import { RegisterComponent } from './Components/Auth/register/register.component';
@@ -26,6 +28,7 @@ import { AuthGuard } from './Gaurds/auth.guard';
 
 import { AuthService } from './Services/auth.service';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
+import { CreateRequestComponent } from './Components/create-request/create-request.component';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { TokenInterceptorService } from './Services/token-interceptor.service';
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    ModalComponent
+    ModalComponent,
+    CreateRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import { TokenInterceptorService } from './Services/token-interceptor.service';
     MatRadioModule,
     MatCardModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgbModule
   ],
   providers: [AuthService, AuthGuard,

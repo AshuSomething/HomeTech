@@ -75,7 +75,7 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 			return response;
 		}
 		[HttpPost]
-		public ResponseDTO CreateComaplint([FromBody] ComplaintDTO complaintDTO)
+		public IActionResult CreateComplaint([FromBody] ComplaintDTO complaintDTO)
 		{
 			try
 			{
@@ -91,8 +91,10 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 				response.Message = e.Message;
 
 			}
-			return response;
+			return Ok(response);
 		}
+
+
 		[HttpPut]
 
 		public ResponseDTO UpdateComplaint([FromBody] ComplaintDTO complaintDTO)

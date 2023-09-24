@@ -20,17 +20,17 @@ namespace HomeTech.Services.ComplaintAPI.Data
 			modelBuilder.Entity<Complaint>().HasData(new Complaint
 			{
 				ComplaintID = 1,
-				Category="Plumber",
-				Service="Pipe Leakage",
-				Description="Water is draining out from the damaged position"
+				Category = "Plumber",
+				Service = "Pipe Leakage",
+				Date = DateTime.UtcNow
 			});
 			modelBuilder.Entity<Complaint>().HasData(new Complaint
 			{
 				ComplaintID = 2,
 				Category = "Electrician",
 				Service = "Switch Replacement",
-				Description = "While Switching it on/off it is throwing sparks"
-			});
+                Date = DateTime.UtcNow
+            });
 
 		}
 	}

@@ -1,0 +1,37 @@
+<h1>Registration Form</h1>
+<mat-card>
+    <form #userForm="ngForm">
+
+        <mat-form-field class="fields">
+            <mat-label for="Service">Service</mat-label>
+            <mat-select name="Service" id="Service" required [(ngModel)]="Model.Service"
+                (ngModelChange)="updateCategoryOptions()" #Service="ngModel">
+                <mat-option *ngFor="let service of serviceOptions" [value]="service">{{ service }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="Service.invalid && (Service.dirty || Service.touched)">Service is
+                Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="fields">
+            <mat-label for="Category">Category</mat-label>
+            <mat-select name="Category" id="Category" required [(ngModel)]="Model.Category" #Category="ngModel">
+                <mat-option *ngFor="let category of categoryOptions" [value]="category">{{ category }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="Category.invalid && (Category.dirty || Category.touched)">Category
+                is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width fields">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="Model.Time"
+                name="Time">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+        <button [disabled]="userForm.form.invalid" mat-raised-button color="primary" class="button"
+            (click)="createRequest()">Submit</button>
+    </form>
+</mat-card>
