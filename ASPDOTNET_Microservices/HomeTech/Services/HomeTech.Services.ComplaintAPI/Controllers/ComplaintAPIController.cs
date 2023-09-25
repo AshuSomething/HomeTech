@@ -21,8 +21,10 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 			_mapper = mapper;
 			response = new ResponseDTO();
 		}
+
+
 		[HttpGet]
-		public ResponseDTO GetAllComlpaints()
+		public IActionResult GetAllComlpaints()
 		{
 			try
 			{
@@ -36,28 +38,33 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 				response.Message = e.Message;
 
 			}
-			return response;
+			return Ok(response);
 		}
+
+
 		[HttpGet]
-		[Route("{id:int}")]
-		public ResponseDTO GetComplaintById(int id)
+		[Route("{Customer}")]
+		public IActionResult GetComplaintById(String Customer)
 		{
 			try
 			{
-				Complaint obj = _db.Complaints.First(u=>u.ComplaintID==id);
-				response.Result = _mapper.Map<ComplaintDTO>(obj);
-				
+                IEnumerable<Complaint> objList = _db.Complaints.Where(c => c.CustomerId == Customer).ToList();
+                response.Result = _mapper.Map<IEnumerable<ComplaintDTO>>(objList);
 
-			}
+
+            }
 			catch (Exception e)
 			{
 				response.IsSuccess = false;
 				response.Message = e.Message;
 
 			}
-			return response;
+			return Ok(response);
 		}
-		[HttpGet]
+
+
+
+		/*[HttpGet]
 		[Route("GetByCategory/{category}")]
 		public ResponseDTO GetComaplaintByCategory(string category)
 		{
@@ -73,7 +80,10 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 
 			}
 			return response;
-		}
+		}*/
+
+
+
 		[HttpPost]
 		public IActionResult CreateComplaint([FromBody] ComplaintDTO complaintDTO)
 		{
@@ -97,7 +107,7 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 
 		[HttpPut]
 
-		public ResponseDTO UpdateComplaint([FromBody] ComplaintDTO complaintDTO)
+		public IActionResult UpdateComplaint([FromBody] ComplaintDTO complaintDTO)
 		{
 			try
 			{
@@ -113,11 +123,13 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 				response.Message = e.Message;
 
 			}
-			return response;
+            return Ok(response);
 		}
 
+
+
 		[HttpDelete]
-		public ResponseDTO RemoveComplaint(int id)
+		public IActionResult RemoveComplaint(int id)
 		{
 			try
 			{
@@ -131,7 +143,7 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 				response.Message = e.Message;
 
 			}
-			return response;
+			return Ok(response);
 		}
 
 	}

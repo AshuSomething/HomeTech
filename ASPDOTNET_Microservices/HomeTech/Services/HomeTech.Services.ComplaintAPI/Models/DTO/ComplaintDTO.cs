@@ -6,5 +6,6 @@
 		public string Category { get; set; }
 		public string Service { get; set; }
         public DateTime Date { get; set; }
+		public string CustomerId { get; set; }
     }
 }

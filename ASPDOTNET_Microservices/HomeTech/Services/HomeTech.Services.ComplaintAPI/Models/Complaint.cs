@@ -15,6 +15,8 @@ namespace HomeTech.Services.ComplaintAPI.Models
 
         [Required]
         public DateTime Date { get; set; }
+        [Required]
+        public string CustomerId { get; set; }
 
     }
 }
