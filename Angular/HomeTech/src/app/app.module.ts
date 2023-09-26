@@ -31,6 +31,7 @@ import { AuthService } from './Services/auth.service';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { CustomerService } from './Services/customer.service';
 import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
+import { UpdateRequestComponent } from './Components/update-request/update-request.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MyRequestsComponent } from './Components/Common/my-requests/my-requests
     LoginComponent,
     ModalComponent,
     CreateRequestComponent,
-    MyRequestsComponent
+    MyRequestsComponent,
+    UpdateRequestComponent
   ],
   imports: [
     BrowserModule,

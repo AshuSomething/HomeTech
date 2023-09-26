@@ -14,12 +14,17 @@ export class CreateRequestComponent {
 
   constructor(private _auth: AuthService, private _customeService: CustomerService) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
-    const currentDate = new Date();
-    const tomorrow = new Date(currentDate);
-    tomorrow.setDate(currentDate.getDate() + 1);
 
+    const currentDate = new Date();
+    // console.log("currentDate=" + currentDate);
+    const tomorrow = new Date(currentDate);
+    // console.log("tommorrow1=" + currentDate);
+
+    tomorrow.setDate(currentDate.getDate() + 1);
+    // console.log("tommorrow2=" + tomorrow);
     const oneMonthLater = new Date(currentDate);
     oneMonthLater.setMonth(currentDate.getMonth() + 1);
+    console.log(oneMonthLater);
 
     this.minDate = tomorrow;
     this.maxDate = oneMonthLater;
@@ -70,14 +75,12 @@ export class CreateRequestComponent {
   ];
 
   createRequest() {
-    console.log(this.selectedDate);
-    console.log(this.selectedTime);
     if (this.selectedDate && this.selectedTime) {
       const selectedDateTime = new Date(this.selectedDate);
-
       const timeParts = this.selectedTime.split(':');
       selectedDateTime.setHours(Number(timeParts[0]));
-      this.Model.Time = selectedDateTime.toISOString();
+      console.log(selectedDateTime)
+      this.Model.Date = selectedDateTime.toISOString();
       this._customeService.createRequest(this.Model).subscribe(
         (response) => {
           console.log('POST request successful:', response);
