@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CreateRequestDto } from 'src/app/Models/createRequestDto';
+import { AuthService } from 'src/app/Services/auth.service';
+import { CustomerService } from 'src/app/Services/customer.service';
 
 @Component({
   selector: 'app-create-request',
@@ -8,7 +10,7 @@ import { CreateRequestDto } from 'src/app/Models/createRequestDto';
 })
 export class CreateRequestComponent {
 
-  constructor() {
+  constructor(private _auth: AuthService, private _customeService: CustomerService) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
     const currentDate = new Date();
     const tomorrow = new Date(currentDate);
@@ -25,7 +27,7 @@ export class CreateRequestComponent {
   maxDate: Date;
 
 
-  Model = new CreateRequestDto();
+  Model = new CreateRequestDto(this._auth.getJwtData().sub);
   serviceOptions: string[] = [
     'Carpenter',
     'Plumber',
@@ -49,7 +51,20 @@ export class CreateRequestComponent {
   categoryOptions: string[] = [];
 
   createRequest() {
-    this.Model.Time = this.Model.Time + new Date().toTimeString();
-    console.log(this.Model);
+    //var time: string = this.Model.Time?.toISOString() as string;
+    var time = new Date(this.Model.Time as string);
+    time.setHours(time.getHours() + 11);
+    this.Model.Time = time.toISOString();
+    this._customeService.createRequest(this.Model).subscribe(
+      (response) => {
+        console.log('POST request successful:', response);
+        // Handle the response data here
+      },
+      (error) => {
+        console.error('POST request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
   }
 }

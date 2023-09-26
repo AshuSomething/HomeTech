@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { ModalComponent } from './Components/modal/modal.component';
+import { CreateRequestComponent } from './Components/create-request/create-request.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +29,8 @@ import { AuthGuard } from './Gaurds/auth.guard';
 
 import { AuthService } from './Services/auth.service';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
-import { CreateRequestComponent } from './Components/create-request/create-request.component';
+import { CustomerService } from './Services/customer.service';
+import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { CreateRequestComponent } from './Components/create-request/create-reque
     RegisterComponent,
     LoginComponent,
     ModalComponent,
-    CreateRequestComponent
+    CreateRequestComponent,
+    MyRequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { CreateRequestComponent } from './Components/create-request/create-reque
     MatNativeDateModule,
     NgbModule
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService, CustomerService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

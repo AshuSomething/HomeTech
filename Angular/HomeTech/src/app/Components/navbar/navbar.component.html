@@ -18,7 +18,7 @@
     <ng-template #technicianLink><a mat-button *ngIf="getauthService().loggedIn()">Select requests</a></ng-template>
 
     <!-- Logged -->
-    <a mat-button *ngIf="getauthService().loggedIn()">My requests</a>
+    <a mat-button *ngIf="getauthService().loggedIn()" routerLink="myRequests">My requests</a>
     <a mat-button *ngIf="getauthService().loggedIn()" routerLink="dashboard">My Profile</a>
     <a mat-button *ngIf="getauthService().loggedIn()" routerLink="login"
         (click)="getauthService().logOutUser()">Logout</a>
