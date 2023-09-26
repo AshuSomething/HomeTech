@@ -1,4 +1,4 @@
-<h1>Registration Form</h1>
+<h1>Edit Form</h1>
 <mat-card>
     <form #userForm="ngForm">
 
@@ -39,6 +39,6 @@
         </mat-form-field>
 
         <button [disabled]="userForm.form.invalid" mat-raised-button color="primary" class="button"
-            (click)="createRequest()">Submit</button>
+            (click)="updateRequest()">Edit</button>
     </form>
 </mat-card>

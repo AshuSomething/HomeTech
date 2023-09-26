@@ -1,4 +1,4 @@
-export class CreateRequestDto {
+export class updateRequestDto {
     constructor(
         public CustomerId: string,
         public Service?: String,

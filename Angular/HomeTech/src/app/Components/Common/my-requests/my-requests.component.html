@@ -4,6 +4,7 @@
             <tr>
                 <th>Service</th>
                 <th>Category</th>
+                <th>Date and Time</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -12,8 +13,9 @@
             <tr *ngFor="let request of requests">
                 <td>{{ request.service }}</td>
                 <td>{{ request.category }}</td>
+                <td>{{ request.date }}</td>
                 <td>
-                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-primary" (click)="navigateToUpdateComponent(request)">Edit</button>
                 </td>
                 <td>
                     <button class="btn btn-danger">Delete</button>

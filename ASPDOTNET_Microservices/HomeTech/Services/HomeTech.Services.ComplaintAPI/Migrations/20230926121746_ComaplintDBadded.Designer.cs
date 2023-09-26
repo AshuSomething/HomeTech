@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeTech.Services.ComplaintAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230922190632_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230926121746_ComaplintDBadded")]
+    partial class ComaplintDBadded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,10 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -53,14 +57,16 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
                         {
                             ComplaintID = 1,
                             Category = "Plumber",
-                            Date = new DateTime(2023, 9, 22, 19, 6, 32, 760, DateTimeKind.Utc).AddTicks(7414),
+                            CustomerId = "1",
+                            Date = new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(440),
                             Service = "Pipe Leakage"
                         },
                         new
                         {
                             ComplaintID = 2,
                             Category = "Electrician",
-                            Date = new DateTime(2023, 9, 22, 19, 6, 32, 760, DateTimeKind.Utc).AddTicks(7445),
+                            CustomerId = "1",
+                            Date = new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(492),
                             Service = "Switch Replacement"
                         });
                 });

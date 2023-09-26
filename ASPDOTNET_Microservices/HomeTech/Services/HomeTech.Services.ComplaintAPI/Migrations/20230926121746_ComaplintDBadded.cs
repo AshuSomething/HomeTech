@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HomeTech.Services.ComplaintAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class ComaplintDBadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,8 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Service = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,11 +31,11 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Complaints",
-                columns: new[] { "ComplaintID", "Category", "Date", "Service" },
+                columns: new[] { "ComplaintID", "Category", "CustomerId", "Date", "Service" },
                 values: new object[,]
                 {
-                    { 1, "Plumber", new DateTime(2023, 9, 22, 19, 6, 32, 760, DateTimeKind.Utc).AddTicks(7414), "Pipe Leakage" },
-                    { 2, "Electrician", new DateTime(2023, 9, 22, 19, 6, 32, 760, DateTimeKind.Utc).AddTicks(7445), "Switch Replacement" }
+                    { 1, "Plumber", "1", new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(440), "Pipe Leakage" },
+                    { 2, "Electrician", "1", new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(492), "Switch Replacement" }
                 });
         }
 

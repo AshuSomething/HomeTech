@@ -10,6 +10,7 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   private _createRequestUrl = 'https://localhost:7003/api/ComplaintAPI';
+  private _updateRequestUrl = "https://localhost:7003/api/ComplaintAPI/"
   private _getRequestsUrl = "https://localhost:7003/api/ComplaintAPI/";
 
   createRequest(createRequestDto: any): Observable<any> {
@@ -19,7 +20,19 @@ export class CustomerService {
     );
   }
 
+  updateRequest(updateRequestDto: any): Observable<any> {
+
+    return this.http.put<any>(this._updateRequestUrl, updateRequestDto).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+
   getRequests(Customer: any) {
+    return this.http.get<any>(this._getRequestsUrl + Customer);
+  }
+
+  getRequest(Customer: any) {
     return this.http.get<any>(this._getRequestsUrl + Customer);
   }
 

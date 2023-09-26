@@ -9,22 +9,33 @@ import { CustomerService } from 'src/app/Services/customer.service';
   styleUrls: ['./create-request.component.css']
 })
 export class CreateRequestComponent {
+  selectedDate: any;
+  selectedTime: any;
 
   constructor(private _auth: AuthService, private _customeService: CustomerService) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
-    const currentDate = new Date();
-    const tomorrow = new Date(currentDate);
-    tomorrow.setDate(currentDate.getDate() + 1);
 
+    const currentDate = new Date();
+    // console.log("currentDate=" + currentDate);
+    const tomorrow = new Date(currentDate);
+    // console.log("tommorrow1=" + currentDate);
+
+    tomorrow.setDate(currentDate.getDate() + 1);
+    // console.log("tommorrow2=" + tomorrow);
     const oneMonthLater = new Date(currentDate);
     oneMonthLater.setMonth(currentDate.getMonth() + 1);
+    console.log(oneMonthLater);
 
     this.minDate = tomorrow;
     this.maxDate = oneMonthLater;
+
+
   }
 
   minDate: Date;
   maxDate: Date;
+
+
 
 
   Model = new CreateRequestDto(this._auth.getJwtData().sub);
@@ -34,6 +45,7 @@ export class CreateRequestComponent {
     'Electrician',
     // Add more options as needed
   ];
+
 
   serviceCategories: Record<string, string[]> = {
     'Carpenter': ['Category 1', 'Category 2'],
@@ -50,21 +62,36 @@ export class CreateRequestComponent {
 
   categoryOptions: string[] = [];
 
+  timeOptions: string[] = [
+    '10:00 AM',
+    '11:00 AM',
+    '12:00 PM',
+    '1:00 PM',
+    '2:00 PM',
+    '3:00 PM',
+    '4:00 PM',
+    '5:00 PM',
+    '6:00 PM'
+  ];
+
   createRequest() {
-    //var time: string = this.Model.Time?.toISOString() as string;
-    var time = new Date(this.Model.Time as string);
-    time.setHours(time.getHours() + 11);
-    this.Model.Time = time.toISOString();
-    this._customeService.createRequest(this.Model).subscribe(
-      (response) => {
-        console.log('POST request successful:', response);
-        // Handle the response data here
-      },
-      (error) => {
-        console.error('POST request failed:', error);
-        // Handle errors here
-      }
-    );
-    console.log("request sent");
+    if (this.selectedDate && this.selectedTime) {
+      const selectedDateTime = new Date(this.selectedDate);
+      const timeParts = this.selectedTime.split(':');
+      selectedDateTime.setHours(Number(timeParts[0]));
+      console.log(selectedDateTime)
+      this.Model.Date = selectedDateTime.toISOString();
+      this._customeService.createRequest(this.Model).subscribe(
+        (response) => {
+          console.log('POST request successful:', response);
+          // Handle the response data here
+        },
+        (error) => {
+          console.error('POST request failed:', error);
+          // Handle errors here
+        }
+      );
+      console.log("request sent");
+    }
   }
 }
