@@ -2,6 +2,7 @@
 using HomeTech.Services.ComplaintAPI.Data;
 using HomeTech.Services.ComplaintAPI.Models;
 using HomeTech.Services.ComplaintAPI.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class ComplaintAPIController : ControllerBase
 	{
 		private readonly AppDbContext _db;
