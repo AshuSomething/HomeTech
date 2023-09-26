@@ -55,7 +55,7 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
                             ComplaintID = 1,
                             Category = "Plumber",
                             CustomerId = "1",
-                            Date = new DateTime(2023, 9, 25, 7, 51, 12, 432, DateTimeKind.Utc).AddTicks(1272),
+                            Date = new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(440),
                             Service = "Pipe Leakage"
                         },
                         new
@@ -63,7 +63,7 @@ namespace HomeTech.Services.ComplaintAPI.Migrations
                             ComplaintID = 2,
                             Category = "Electrician",
                             CustomerId = "1",
-                            Date = new DateTime(2023, 9, 25, 7, 51, 12, 432, DateTimeKind.Utc).AddTicks(1331),
+                            Date = new DateTime(2023, 9, 26, 12, 17, 46, 13, DateTimeKind.Utc).AddTicks(492),
                             Service = "Switch Replacement"
                         });
                 });

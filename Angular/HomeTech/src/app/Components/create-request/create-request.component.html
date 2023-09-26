@@ -23,13 +23,20 @@
 
         <mat-form-field class="example-full-width fields">
             <mat-label>Choose a date</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="Model.Time"
-                name="Time">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="selectedDate"
+                name="selectedDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
+        <mat-form-field class="fields">
+            <mat-label>Choose a time</mat-label>
+            <mat-select name="selectedTime" required [(ngModel)]="selectedTime">
+                <mat-option *ngFor="let time of timeOptions" [value]="time">{{ time }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="!selectedTime">Time is Required</mat-error>
+        </mat-form-field>
 
         <button [disabled]="userForm.form.invalid" mat-raised-button color="primary" class="button"
             (click)="createRequest()">Submit</button>
