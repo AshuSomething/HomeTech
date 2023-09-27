@@ -57,19 +57,20 @@ namespace HomeTech.Services.AuthAPI.Controllers
             }
 
             var result = await _authService.UpdateUser(updateRequestDto);
+            _responseDto.Message = result;
 
             // You can handle the result as needed
             if (result == "User updated successfully.")
             {
-                return Ok(result);
+                return Ok(_responseDto);
             }
             else if (result == "User not found.")
             {
-                return NotFound(result);
+                return NotFound(_responseDto);
             }
             else
             {
-                return BadRequest(result);
+                return BadRequest(_responseDto);
             }
         }
     }

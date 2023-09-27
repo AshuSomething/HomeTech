@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateUsertDto } from 'src/app/Models/updateUserDto';
 import { AuthService } from 'src/app/Services/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class UpdateUserComponent implements OnInit {
 
-  constructor(private _route: ActivatedRoute, private _auth: AuthService) { }
+  constructor(private _route: ActivatedRoute, private _auth: AuthService, private _router: Router) { }
   ngOnInit(): void {
     // Initialization logic goes here
     // this.requestQueryParam = this._route.snapshot.queryParamMap.get('request');
@@ -20,11 +20,12 @@ export class UpdateUserComponent implements OnInit {
       if (params['request']) {
         var obj = JSON.parse(params['request']);
 
-        this.updateDetails.email = obj.email;
-        this.updateDetails.phoneNumber = obj.phoneNumber;
-        this.updateDetails.userName = obj.userName;
+        this.updateDetails.Email = obj.Email;
+        this.updateDetails.PhoneNumber = obj.PhoneNumber;
+        this.updateDetails.UserName = obj.UserName;
         console.log(obj);
         console.log(JSON.parse(params['request']));
+
       }
     });
   }
@@ -37,6 +38,8 @@ export class UpdateUserComponent implements OnInit {
       (response) => {
         console.log('PUT request successful:', response);
         // Handle the response data here
+        localStorage.removeItem('token');
+        this._router.navigate(['/login'])
       },
       (error) => {
         console.error('PUT request failed:', error);
