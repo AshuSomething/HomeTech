@@ -12,6 +12,7 @@ export class CustomerService {
   private _createRequestUrl = 'https://localhost:7003/api/ComplaintAPI';
   private _updateRequestUrl = "https://localhost:7003/api/ComplaintAPI/"
   private _getRequestsUrl = "https://localhost:7003/api/ComplaintAPI/";
+  private _deleteRequestUrl = "https://localhost:7003/api/ComplaintAPI";
 
   createRequest(createRequestDto: any): Observable<any> {
 
@@ -23,6 +24,12 @@ export class CustomerService {
   updateRequest(updateRequestDto: any): Observable<any> {
 
     return this.http.put<any>(this._updateRequestUrl, updateRequestDto).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+  deleteRequest(complaintID: any): Observable<any> {
+
+    return this.http.delete(this._deleteRequestUrl + "?id=" + complaintID).pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
