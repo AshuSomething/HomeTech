@@ -19,6 +19,32 @@ export class MyRequestsComponent implements OnInit {
       queryParams: { request: JSON.stringify(request) }
     });
   }
+  transform(value: string): string {
+    if (!value) return '';
+
+    const date = new Date(value);
+    // Add 5 and a half hours (5 * 60 + 30 minutes) to the time
+    date.setMinutes(date.getMinutes() + 330);
+
+    // Format the date as "dd/mm/yyyy"
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    // Format the time as "hh:mm a"
+    const hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const amPm = hours === 10 || hours === 11 ? 'AM' : 'PM';
+
+    // Convert hours to 12-hour format
+    const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+
+    const formattedTime = `${formattedHours}:${minutes} ${amPm}`;
+
+    const formattedDateAndTime = `${day}/${month}/${year} ${formattedTime}`;
+
+    return formattedDateAndTime;
+  }
 
   deleteRequest(request: any) {
     this._customeService.deleteRequest(request.complaintID).subscribe(
@@ -46,4 +72,5 @@ export class MyRequestsComponent implements OnInit {
 
   }
   constructor(private _auth: AuthService, private _customeService: CustomerService, private _router: Router, private _route: ActivatedRoute) { }
+
 }
