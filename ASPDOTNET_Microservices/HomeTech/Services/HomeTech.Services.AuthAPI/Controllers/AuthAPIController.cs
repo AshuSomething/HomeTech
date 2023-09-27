@@ -46,5 +46,31 @@ namespace HomeTech.Services.AuthAPI.Controllers
             _responseDto.Result = loginResponseDto;
             return Ok(_responseDto);
         }
+
+        [HttpPut]
+
+        public async Task<IActionResult> UpdateComplaint([FromBody] UpdateRequestDto updateRequestDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authService.UpdateUser(updateRequestDto);
+
+            // You can handle the result as needed
+            if (result == "User updated successfully.")
+            {
+                return Ok(result);
+            }
+            else if (result == "User not found.")
+            {
+                return NotFound(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
     }
 }

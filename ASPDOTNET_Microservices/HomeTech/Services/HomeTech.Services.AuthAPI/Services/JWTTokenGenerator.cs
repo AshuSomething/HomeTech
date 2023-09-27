@@ -27,7 +27,8 @@ namespace HomeTech.Services.AuthAPI.Services
                 new Claim(JwtRegisteredClaimNames.Name, applicationUser.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, applicationUser.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id),
-                new Claim(ClaimTypes.Role, role)
+                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.SerialNumber, applicationUser.PhoneNumber)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

@@ -1,4 +1,5 @@
-﻿using HomeTech.Services.AuthAPI.Data;
+﻿using Azure;
+using HomeTech.Services.AuthAPI.Data;
 using HomeTech.Services.AuthAPI.Models;
 using HomeTech.Services.AuthAPI.Models.Dto;
 using HomeTech.Services.AuthAPI.Services.IServices;
@@ -99,5 +100,33 @@ namespace HomeTech.Services.AuthAPI.Services
             return string.Join(", ", roles);
         }
 
+        public async Task<string> UpdateUser(UpdateRequestDto updateRequestDto)
+        {
+            var user = await _userManager.FindByNameAsync(updateRequestDto.UserName);
+
+            if (user == null)
+            {
+                // Handle user not found
+                return "User not found.";
+            }
+
+            // Update the user's email and phone number
+            user.Email = updateRequestDto.Email;
+            user.PhoneNumber = updateRequestDto.PhoneNumber;
+
+            // You can also update other user properties here if needed
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return "User updated successfully.";
+            }
+            else
+            {
+                // Handle errors, such as validation errors
+                return "Error updating user.";
+            }
+        }
     }
 }
