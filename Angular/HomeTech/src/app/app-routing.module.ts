@@ -8,8 +8,10 @@ import { CreateRequestComponent } from './Components/create-request/create-reque
 import { UpdateRequestComponent } from './Components/update-request/update-request.component';
 import { CoustmerGuard } from './Gaurds/coustmer.guard';
 import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
+import { HomeComponent } from './Components/Common/home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },

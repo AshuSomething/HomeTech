@@ -3,7 +3,8 @@ export class updateRequestDto {
         public CustomerId: string,
         public Service?: String,
         public Category?: string,
-        public Date?: any
+        public Date?: any,
+        public Id?: string
     ) { }
 
 }
