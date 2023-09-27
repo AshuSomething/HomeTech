@@ -20,9 +20,9 @@ export class DashboardComponent implements OnInit {
     this.user.PhoneNumber = this.obj.certserialnumber;
     console.log(this.user);
 
-    this.updateDetails.email = this.obj.email;
-    this.updateDetails.userName = this.obj.name;
-    this.updateDetails.phoneNumber = this.obj.certserialnumber;
+    this.updateDetails.Email = this.obj.email;
+    this.updateDetails.UserName = this.obj.name;
+    this.updateDetails.PhoneNumber = this.obj.certserialnumber;
   }
 
   constructor(private _auth: AuthService, private _router: Router, private _route: ActivatedRoute) { }

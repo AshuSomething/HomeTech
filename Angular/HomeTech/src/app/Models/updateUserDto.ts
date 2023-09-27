@@ -1,8 +1,8 @@
 export class UpdateUsertDto {
     constructor(
-        public userName?: string,
-        public email?: String,
-        public phoneNumber?: string
+        public UserName?: string,
+        public Email?: String,
+        public PhoneNumber?: string
     ) { }
 
 }
