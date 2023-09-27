@@ -10,6 +10,7 @@ export class AuthService {
 
   private _registerUrl = "https://localhost:7002/api/AuthAPI/register";
   private _loginUrl = "https://localhost:7002/api/AuthAPI/login";
+  private _updateUrl = "https://localhost:7002/api/AuthAPI";
   constructor(private http: HttpClient) { }
 
 
@@ -27,6 +28,12 @@ export class AuthService {
     );
   }
 
+  updateUser(updateRequestDto: any): Observable<any> {
+
+    return this.http.put<any>(this._updateUrl, updateRequestDto).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

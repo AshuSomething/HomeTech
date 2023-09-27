@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDto } from 'src/app/Models/UserDto';
+import { UserDto } from 'src/app/Models/userDto';
 import { AuthService } from 'src/app/Services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateUsertDto } from 'src/app/Models/updateUserDto';
+import { updateRequestDto } from 'src/app/Models/updateRequestDto';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +19,21 @@ export class DashboardComponent implements OnInit {
     this.user.Id = this.obj.sub;
     this.user.PhoneNumber = this.obj.certserialnumber;
     console.log(this.user);
+
+    this.updateDetails.email = this.obj.email;
+    this.updateDetails.userName = this.obj.name;
+    this.updateDetails.phoneNumber = this.obj.certserialnumber;
   }
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService, private _router: Router, private _route: ActivatedRoute) { }
 
   user = new UserDto();
   obj: any;
+  updateDetails = new UpdateUsertDto();
+
+  navigateToUpdateUserComponent(request: any) {
+    this._router.navigate(['/updateUser'], {
+      queryParams: { request: JSON.stringify(request) }
+    });
+  }
 }

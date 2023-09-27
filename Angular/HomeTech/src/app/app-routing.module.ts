@@ -9,6 +9,7 @@ import { UpdateRequestComponent } from './Components/update-request/update-reque
 import { CoustmerGuard } from './Gaurds/coustmer.guard';
 import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
 import { HomeComponent } from './Components/Common/home/home.component';
+import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'myRequests', component: MyRequestsComponent, canActivate: [AuthGuard] },
+  { path: 'updateUser', component: UpdateUserComponent, canActivate: [AuthGuard] },
   { path: 'createRequest', component: CreateRequestComponent, canActivate: [CoustmerGuard] },
   { path: 'updateRequest', component: UpdateRequestComponent, canActivate: [CoustmerGuard] }
 ];

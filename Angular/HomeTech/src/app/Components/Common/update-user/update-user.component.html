@@ -1,0 +1,33 @@
+<h1>Registration Form</h1>
+<mat-card>
+    <form #userForm="ngForm">
+
+        <mat-form-field class="fields">
+            <mat-label for="UserName">UserName</mat-label>
+            <input matInput type="text" name="UserName" required #UserName="ngModel" id="UserName"
+                [(ngModel)]="updateDetails.userName" autocomplete="off">
+            <mat-error *ngIf="UserName.invalid && UserName.touched">UserName is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="fields">
+            <mat-label for="Email">Email Id</mat-label>
+            <input matInput type="email" name="Email" id="Email" required #Email="ngModel"
+                [(ngModel)]="updateDetails.email" autocomplete="off">
+            <mat-error *ngIf="Email.invalid && Email.touched">Email Id is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="fields">
+            <mat-label for="PhoneNumber">Phone Number</mat-label>
+            <input matInput type="tel" name="PhoneNumber" #PhoneNumber="ngModel" pattern="^\d{10}$" required
+                id="PhoneNumber" [(ngModel)]="updateDetails.phoneNumber" autocomplete="off">
+            <mat-error *ngIf="PhoneNumber.errors && (PhoneNumber.invalid || PhoneNumber.touched)">
+                <span *ngIf="PhoneNumber.errors['required']">Phone Number is required</span>
+                <span *ngIf="PhoneNumber.errors['pattern']">Phone Number must be 10 digits</span>
+            </mat-error>
+        </mat-form-field>
+
+
+        <button [disabled]="userForm.form.invalid" mat-raised-button color="primary" class="button"
+            (click)="updateRequest()">Submit</button>
+    </form>
+</mat-card>

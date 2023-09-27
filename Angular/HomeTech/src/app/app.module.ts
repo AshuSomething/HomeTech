@@ -33,6 +33,7 @@ import { CustomerService } from './Services/customer.service';
 import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
 import { UpdateRequestComponent } from './Components/update-request/update-request.component';
 import { HomeComponent } from './Components/Common/home/home.component';
+import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { HomeComponent } from './Components/Common/home/home.component';
     CreateRequestComponent,
     MyRequestsComponent,
     UpdateRequestComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
