@@ -15,7 +15,8 @@
         requests</a>
 
     <!-- Technician looged in -->
-    <ng-template #technicianLink><a mat-button *ngIf="getauthService().loggedIn()">Select requests</a></ng-template>
+    <ng-template #technicianLink><a mat-button *ngIf="getauthService().loggedIn()" routerLink="selectRequest">Select
+            requests</a></ng-template>
 
     <!-- Logged -->
 

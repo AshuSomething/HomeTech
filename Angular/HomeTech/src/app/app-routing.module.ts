@@ -10,6 +10,9 @@ import { CoustmerGuard } from './Gaurds/coustmer.guard';
 import { MyRequestsComponent } from './Components/Common/my-requests/my-requests.component';
 import { HomeComponent } from './Components/Common/home/home.component';
 import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
+import { SelectRequestComponent } from './Components/technician/select-request/select-request.component';
+import { TechnicianGaurd } from './Gaurds/technician.guard';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +23,9 @@ const routes: Routes = [
   { path: 'myRequests', component: MyRequestsComponent, canActivate: [AuthGuard] },
   { path: 'updateUser', component: UpdateUserComponent, canActivate: [AuthGuard] },
   { path: 'createRequest', component: CreateRequestComponent, canActivate: [CoustmerGuard] },
-  { path: 'updateRequest', component: UpdateRequestComponent, canActivate: [CoustmerGuard] }
+  { path: 'updateRequest', component: UpdateRequestComponent, canActivate: [CoustmerGuard] },
+  { path: "selectRequest", component: SelectRequestComponent, canActivate: [TechnicianGaurd] }
+
 ];
 
 @NgModule({

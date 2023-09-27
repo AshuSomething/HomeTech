@@ -6,7 +6,6 @@
                 <th>Category</th>
                 <th>Date and Time</th>
                 <th>Edit</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -15,10 +14,7 @@
                 <td>{{ request.category }}</td>
                 <td>{{ transform(request.date)}}</td>
                 <td>
-                    <button class="btn btn-primary" (click)="navigateToUpdateComponent(request)">Edit</button>
-                </td>
-                <td>
-                    <button class="btn btn-danger" (click)="deleteRequest(request)">Delete</button>
+                    <button class="btn btn-primary">Accept</button>
                 </td>
             </tr>
         </tbody>

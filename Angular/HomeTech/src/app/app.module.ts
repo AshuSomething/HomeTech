@@ -34,6 +34,7 @@ import { MyRequestsComponent } from './Components/Common/my-requests/my-requests
 import { UpdateRequestComponent } from './Components/update-request/update-request.component';
 import { HomeComponent } from './Components/Common/home/home.component';
 import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
+import { SelectRequestComponent } from './Components/technician/select-request/select-request.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { UpdateUserComponent } from './Components/Common/update-user/update-user
     MyRequestsComponent,
     UpdateRequestComponent,
     HomeComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    SelectRequestComponent
   ],
   imports: [
     BrowserModule,
