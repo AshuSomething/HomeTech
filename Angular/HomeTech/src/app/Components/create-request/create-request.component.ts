@@ -40,17 +40,19 @@ export class CreateRequestComponent {
 
   Model = new CreateRequestDto(this._auth.getJwtData().sub);
   serviceOptions: string[] = [
-    'Carpenter',
-    'Plumber',
-    'Electrician',
+    'Plumbing',
+    'Gutter Cleaning',
+    'Siding Repairs',
+    'Roofing Repairs'
     // Add more options as needed
   ];
 
 
   serviceCategories: Record<string, string[]> = {
-    'Carpenter': ['Category 1', 'Category 2'],
-    'Plumber': ['Category 3', 'Category 4'],
-    'Electrician': ['Category 5', 'Category 6'],
+    'Plumbing': ['Residential Plumber', 'Service and reapir Plumber'],
+    'Gutter Cleaning': ['Gutter'],
+    "Siding Repairs": ['Shingles', 'Drop siding'],
+    'Roofing Repairs': ['Emergency repairs', 'Preventative repairs', 'Corrective repairs']
     // Add more mappings as needed
   };
 
