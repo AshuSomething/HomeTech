@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 import { updateRequestDto } from 'src/app/Models/updateRequestDto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/Services/customer.service';
 
 
@@ -11,7 +11,7 @@ import { CustomerService } from 'src/app/Services/customer.service';
   styleUrls: ['./update-request.component.css'] // Update the styles if needed
 })
 export class UpdateRequestComponent implements OnInit {
-  constructor(private _auth: AuthService, private _route: ActivatedRoute, private _customeService: CustomerService) {
+  constructor(private _auth: AuthService, private _route: ActivatedRoute, private _customeService: CustomerService, private _router: Router) {
     const currentDate = new Date();
     // console.log("currentDate=" + currentDate);
     const tomorrow = new Date(currentDate);
@@ -113,6 +113,7 @@ export class UpdateRequestComponent implements OnInit {
         (response) => {
           console.log('PUT request successful:', response);
           // Handle the response data here
+          this._router.navigate(['/myRequests']);
         },
         (error) => {
           console.error('PUT request failed:', error);
@@ -121,6 +122,7 @@ export class UpdateRequestComponent implements OnInit {
       );
       console.log("request sent");
     }
+
   }
 
   convertToISTAndFormat(inputDateString: string): string {
