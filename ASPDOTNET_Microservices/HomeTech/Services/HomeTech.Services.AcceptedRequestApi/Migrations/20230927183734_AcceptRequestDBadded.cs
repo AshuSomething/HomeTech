@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace HomeTech.Services.AcceptedRequestApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Techinicianflowadded : Migration
+    public partial class AcceptRequestDBadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,16 +15,18 @@ namespace HomeTech.Services.AcceptedRequestApi.Migrations
                 name: "AcceptRequests",
                 columns: table => new
                 {
-                    AcceptRequestId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ComplaintId = table.Column<int>(type: "int", nullable: false),
                     Service = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     TechnicianId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AcceptRequests", x => x.AcceptRequestId);
+                    table.PrimaryKey("PK_AcceptRequests", x => x.Id);
                 });
         }
 

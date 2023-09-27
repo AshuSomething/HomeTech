@@ -63,7 +63,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 		{
 			try
 			{
-                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.AcceptRequestId == id);
+                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.Id == id);
 				_response.Result = _mapper.Map<AcceptRequestDto>(obj);
 			}
 			catch (Exception ex)
@@ -93,7 +93,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 
 
 		[HttpPost]
-		public ResponseDto Post([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)
+		public IActionResult Post([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)
 		{
 			try
 			{
@@ -108,7 +108,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
+			return Ok(_response);
 		}
 
 
@@ -137,7 +137,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 			try
 			{
 
-                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.AcceptRequestId == id);
+                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.Id == id);
 
 				_db.AcceptRequests.Remove(obj);
 				_db.SaveChanges();
