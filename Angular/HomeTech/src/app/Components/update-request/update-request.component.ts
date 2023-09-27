@@ -46,7 +46,7 @@ export class UpdateRequestComponent implements OnInit {
         this.Model.Service = obj.service;
         this.updateCategoryOptions();
         this.Model.Category = obj.category;
-        this.Model.Id = obj.complaintID;
+        this.Model.ComplaintId = obj.complaintID;
         this.Model.CustomerId = obj.customerId;
         this.selectedDate = obj.date;
         this.selectedTime = this.convertToISTAndFormat(obj.date);

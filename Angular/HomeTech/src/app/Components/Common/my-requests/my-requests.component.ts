@@ -20,6 +20,25 @@ export class MyRequestsComponent implements OnInit {
     });
   }
 
+  deleteRequest(request: any) {
+    this._customeService.deleteRequest(request.complaintID).subscribe(
+      (response) => {
+        console.log('DELETE request successful:', response);
+        // Handle the response data here
+        this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>
+          this.requests = data.result
+          //console.log(data.result)
+        )
+      },
+      (error) => {
+        console.error('DELETE request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
+  }
+
+
   ngOnInit(): void {
     // Initialization logic goes here
     this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>

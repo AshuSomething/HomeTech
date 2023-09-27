@@ -4,7 +4,7 @@ export class updateRequestDto {
         public Service?: String,
         public Category?: string,
         public Date?: any,
-        public Id?: string
+        public ComplaintId?: string
     ) { }
 
 }
