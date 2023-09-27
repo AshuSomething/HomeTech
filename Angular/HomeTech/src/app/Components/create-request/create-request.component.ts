@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateRequestDto } from 'src/app/Models/createRequestDto';
 import { AuthService } from 'src/app/Services/auth.service';
 import { CustomerService } from 'src/app/Services/customer.service';
@@ -12,7 +13,7 @@ export class CreateRequestComponent {
   selectedDate: any;
   selectedTime: any;
 
-  constructor(private _auth: AuthService, private _customeService: CustomerService) {
+  constructor(private _auth: AuthService, private _customeService: CustomerService, private _router: Router) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
 
     const currentDate = new Date();
@@ -87,6 +88,7 @@ export class CreateRequestComponent {
         (response) => {
           console.log('POST request successful:', response);
           // Handle the response data here
+          this._router.navigate(['/myRequests']);
         },
         (error) => {
           console.error('POST request failed:', error);

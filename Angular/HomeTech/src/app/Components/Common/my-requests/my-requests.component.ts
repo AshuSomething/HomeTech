@@ -25,10 +25,7 @@ export class MyRequestsComponent implements OnInit {
       (response) => {
         console.log('DELETE request successful:', response);
         // Handle the response data here
-        this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>
-          this.requests = data.result
-          //console.log(data.result)
-        )
+        window.location.reload();
       },
       (error) => {
         console.error('DELETE request failed:', error);
