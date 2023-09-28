@@ -3,6 +3,7 @@ import { LoginRequestDto } from 'src/app/Models/loginRequestDto';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   userModel = new LoginRequestDto();
 
-  constructor(private _auth: AuthService, private _router: Router) {
+  constructor(private _auth: AuthService, private _router: Router, private modalService: NgbModal) {
 
   }
 
@@ -26,6 +27,7 @@ export class LoginComponent {
       },
       (error) => {
         console.error('POST request failed:', error);
+        this.modalService.open('Either password or username is incorrect');
         // Handle errors here
       }
     );

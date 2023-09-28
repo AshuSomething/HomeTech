@@ -24,11 +24,10 @@ export class RegisterComponent {
         this.modalService.open(response.message);
       },
       (error) => {
-        console.error('POST request failed:', error);
+        console.log('POST request failed:', error);
         // Handle errors here
-        this.modalService.open(error.message);
-      }
-    );
+        this.modalService.open('Username is taken');
+      });
   }
 
   resetUserForm(userForm: NgForm) {

@@ -43,12 +43,13 @@ namespace HomeTech.Services.AuthAPI.Services
             try
             {
                 var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
-                await _userManager.AddToRoleAsync(user, registrationRequestDto.RoleName);
                 if (!result.Succeeded)
                 {
                     return result.Errors.FirstOrDefault().Description;
                 }
-            }catch(Exception ex)
+                await _userManager.AddToRoleAsync(user, registrationRequestDto.RoleName);
+            }
+            catch(Exception ex)
             {
                 return ex.Message;
             }

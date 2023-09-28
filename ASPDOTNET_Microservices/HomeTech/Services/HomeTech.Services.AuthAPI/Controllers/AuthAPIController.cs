@@ -29,6 +29,7 @@ namespace HomeTech.Services.AuthAPI.Controllers
                 _responseDto.Message = message;
                 return BadRequest(_responseDto);
             }
+            _responseDto.Message = message;
             return Ok(_responseDto);
         }
 

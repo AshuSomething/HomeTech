@@ -36,10 +36,11 @@
         <mat-form-field class="fields">
             <mat-label for="Password">Password</mat-label>
             <input matInput type="password" name="Password" id="Password" required [(ngModel)]="userModel.Password"
-                #Password="ngModel" pattern="^.{8,15}$" autocomplete="off">
+                #Password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,15}$" autocomplete="off">
             <mat-error *ngIf="Password.errors && (Password.invalid || Password.touched)">
                 <span *ngIf="Password.errors['required']">Password is required</span>
-                <span *ngIf="Password.errors['pattern']">Password must contain 8 to 15 characters</span>
+                <span *ngIf="Password.errors['pattern']">Password must contain 8 to 15 characters, have a
+                    alpha-numeric,uppercase and lowercase character</span>
             </mat-error>
         </mat-form-field>
 
