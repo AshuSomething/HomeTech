@@ -10,8 +10,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Data
 		}
 
 		public DbSet<AcceptRequest> AcceptRequests { get; set; }
-		public object AcceptRquests { get; internal set; }
-
+		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
