@@ -4,6 +4,7 @@ import { CustomerService } from 'src/app/Services/customer.service';
 import { CustomerRequestDto } from 'src/app/Models/customeRequestDto';
 
 import { ActivatedRoute, Router } from '@angular/router';
+import { TechnicianService } from 'src/app/Services/technician.service';
 
 @Component({
   selector: 'app-my-requests',
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MyRequestsComponent implements OnInit {
 
   requests: CustomerRequestDto[] = [];
+
 
   navigateToUpdateComponent(request: any) {
     this._router.navigate(['/updateRequest'], {
@@ -64,13 +66,23 @@ export class MyRequestsComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialization logic goes here
-    this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>
-      this.requests = data.result
-      //console.log(data.result)
-    )
+    if (this._auth.getJwtData().role === 'Customer') {
+      this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>
+        this.requests = data.result)
+    }
+    if (this._auth.getJwtData().role === 'Technician') {
+      this._techService.getRequestsfromAcceptRequestAPI().subscribe((data: any) =>
+        this.requests = data.result)
+    }
 
 
   }
-  constructor(private _auth: AuthService, private _customeService: CustomerService, private _router: Router, private _route: ActivatedRoute) { }
+  constructor(
+    private _auth: AuthService,
+    private _customeService: CustomerService,
+    private _router: Router,
+    private _techService: TechnicianService,
+    public auth: AuthService
+  ) { }
 
 }

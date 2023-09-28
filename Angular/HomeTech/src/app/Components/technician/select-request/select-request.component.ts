@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AcceptRequestDto } from 'src/app/Models/AcceptRequestDto';
 import { CustomerRequestDto } from 'src/app/Models/customeRequestDto';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TechnicianService } from 'src/app/Services/technician.service';
@@ -44,6 +45,54 @@ export class SelectRequestComponent {
     const formattedDateAndTime = `${day}/${month}/${year} ${formattedTime}`;
 
     return formattedDateAndTime;
+  }
+
+  modifyRequest(request: any) {
+    this.addRequest(request);
+    console.log("comaplint ADDED IN accpetrequests");
+    this.deleteRequest(request);
+  }
+
+  addRequest(request: any) {
+    var obj = new AcceptRequestDto(
+      request.complaintID,
+      request.service,
+      request.category,
+      request.date,
+      request.customerId,
+      this._auth.getJwtData().sub
+    )
+    console.log(request)
+    console.log(obj)
+    this._techService.postRequest(obj).subscribe(
+      (response) => {
+        console.log('POST request successful:', response);
+        // Handle the response data here
+      },
+      (error) => {
+        console.error('POST request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
+    console.log("comaplint ADDED IN accpetrequests");
+
+  }
+
+  deleteRequest(request: any) {
+    this._techService.deleteRequest(request.complaintID).subscribe(
+      (response) => {
+        console.log('DELETE request successful:', response);
+        // Handle the response data here
+        window.location.reload();
+      },
+      (error) => {
+        console.error('DELETE request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
+    console.log("comaplint deleted");
   }
 
 }
