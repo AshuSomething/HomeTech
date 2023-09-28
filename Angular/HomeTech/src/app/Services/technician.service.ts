@@ -33,8 +33,8 @@ export class TechnicianService {
     );
   }
 
-  getRequestsfromAcceptRequestAPI() {
-    return this.http.get<any>(this._acceptRequestUrl).pipe(
+  getRequestsfromAcceptRequestAPI(TechnicainId: string) {
+    return this.http.get<any>(this._acceptRequestUrl + "/" + TechnicainId).pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }

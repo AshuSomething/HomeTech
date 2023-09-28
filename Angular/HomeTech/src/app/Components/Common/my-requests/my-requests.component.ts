@@ -66,14 +66,20 @@ export class MyRequestsComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialization logic goes here
+    console.log("welcome to my requests")
     if (this._auth.getJwtData().role === 'Customer') {
       this._customeService.getRequests(this._auth.getJwtData().sub).subscribe((data: any) =>
         this.requests = data.result)
     }
     if (this._auth.getJwtData().role === 'Technician') {
-      this._techService.getRequestsfromAcceptRequestAPI().subscribe((data: any) =>
-        this.requests = data.result)
+      console.log("techinin")
+      this._techService.getRequestsfromAcceptRequestAPI(this._auth.getJwtData().sub).subscribe((data: any) => {
+        this.requests = data.result
+        console.log(data)
+      })
+
     }
+
 
 
   }

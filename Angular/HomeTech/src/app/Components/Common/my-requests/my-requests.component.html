@@ -5,7 +5,7 @@
                 <th>Service</th>
                 <th>Category</th>
                 <th>Date and Time</th>
-                <th *ngIf=" auth.getJwtData().role=== 'customer'">Edit</th>
+                <th *ngIf=" auth.getJwtData().role=== 'color'">Edit</th>
                 <th *ngIf=" auth.getJwtData().role=== 'customer'">Delete</th>
 
             </tr>
@@ -15,10 +15,10 @@
                 <td>{{ request.service }}</td>
                 <td>{{ request.category }}</td>
                 <td>{{ transform(request.date)}}</td>
-                <td *ngIf=" auth.getJwtData().role=== 'customer'">
+                <td *ngIf=" auth.getJwtData().role=== 'Customer'">
                     <button class="btn btn-primary" (click)="navigateToUpdateComponent(request)">Edit</button>
                 </td>
-                <td *ngIf=" auth.getJwtData().role=== 'customer'">
+                <td *ngIf=" auth.getJwtData().role=== 'Customer'">
                     <button class="btn btn-danger" (click)="deleteRequest(request)">Delete</button>
                 </td>
                 <td *ngIf=" auth.getJwtData().role=== 'Technician'">
