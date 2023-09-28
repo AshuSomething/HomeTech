@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { User } from 'src/app/user';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from '../../Common/popup/popup.component';
 
 
 @Component({
@@ -19,18 +20,25 @@ export class RegisterComponent {
   registerUser() {
     this._auth.registerUser(this.userModel).subscribe(
       (response) => {
-        console.log('POST request successful:', response);
         // Handle the response data here
-        this.modalService.open(response.message);
-      },
-      (error) => {
-        console.log('POST request failed:', error);
-        // Handle errors here
-        this.modalService.open('Username is taken');
+        //this.modalService.open(response.message);
+        this.openPopup(response.isSuccess, response.message);
       });
   }
 
   resetUserForm(userForm: NgForm) {
     userForm.resetForm();;
+  }
+
+  openPopup(successful: boolean, message: string) {
+    const modalRef = this.modalService.open(PopupComponent);
+
+    if (successful) {
+      modalRef.componentInstance.title = 'Registration Successful';
+    } else {
+      modalRef.componentInstance.title = 'Registration Failed';
+    }
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.isSuccess = successful;
   }
 }

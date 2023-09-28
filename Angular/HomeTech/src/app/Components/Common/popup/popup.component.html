@@ -1,0 +1,15 @@
+<div [ngClass]="{'success-header': isSuccess, 'error-header': !isSuccess}" class="modal-header">
+    <h4 class="modal-title" [ngClass]="{'success-title': isSuccess, 'error-title': !isSuccess}">
+        {{ title }}
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="message-container">
+        <img *ngIf="isSuccess" src="assets/icons/check-circle.svg" alt="Success Icon" class="icon">
+        <img *ngIf="!isSuccess" src="assets/icons/x-circle.svg" alt="Error Icon" class="icon">
+        <p class="popup-message">{{ message }}</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close()">OK</button>
+</div>

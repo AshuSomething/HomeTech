@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { ModalComponent } from './Components/modal/modal.component';
 import { CreateRequestComponent } from './Components/create-request/create-request.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -35,6 +34,7 @@ import { UpdateRequestComponent } from './Components/update-request/update-reque
 import { HomeComponent } from './Components/Common/home/home.component';
 import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
 import { SelectRequestComponent } from './Components/technician/select-request/select-request.component';
+import { PopupComponent } from './Components/Common/popup/popup.component';
 
 
 @NgModule({
@@ -43,13 +43,13 @@ import { SelectRequestComponent } from './Components/technician/select-request/s
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    ModalComponent,
     CreateRequestComponent,
     MyRequestsComponent,
     UpdateRequestComponent,
     HomeComponent,
     UpdateUserComponent,
-    SelectRequestComponent
+    SelectRequestComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

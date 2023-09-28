@@ -1,0 +1,43 @@
+/* Styles for the successful theme */
+.success-title,
+.modal-header.success-header {
+    background-color: #4CAF50;
+    /* Green background color */
+    color: white;
+    /* White text color */
+}
+
+/* Styles for the unsuccessful theme */
+
+.success-icon {
+    color: #4CAF50;
+    /* Green icon color */
+}
+
+/* Styles for the unsuccessful theme */
+.error-title,
+.modal-header.error-header {
+    background-color: #f44336;
+    /* Red background color */
+    color: white;
+    /* White text color */
+}
+
+.error-icon {
+    color: #f44336;
+    /* Red icon color */
+}
+
+/* Center the icon */
+.message-container {
+    text-align: center;
+}
+
+.popup-message {
+    margin-top: 10px;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+}
