@@ -42,11 +42,11 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 		}*/
 
 		[HttpGet]
-		public ResponseDto Get()
+		public IActionResult Get()
 		{
 			try
 			{
-                IEnumerable<Model.AcceptRequest> objList = _db.AcceptRequests.ToList();
+				IEnumerable<Model.AcceptRequest> objList = _db.AcceptRequests.ToList();
 				_response.Result = _mapper.Map<IEnumerable<AcceptRequestDto>>(objList);
 			}
 			catch (Exception ex)
@@ -54,10 +54,10 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
+			return Ok(_response);
 		}
 
-		[HttpGet]
+		/*[HttpGet]
 		[Route("{id:int}")]
 		public ResponseDto GetAcceptRequestById(int id)
 		{
@@ -72,9 +72,9 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 				_response.Message = ex.Message;
 			}
 			return _response;
-		}
+		}*/
 
-		[HttpGet]
+		/*[HttpGet]
 		[Route("GetByCode/{code}")]
 		public ResponseDto GetAcceptedRequstedByTechnicianId(string code)
 		{
@@ -90,7 +90,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 			}
 			return _response;
 		}
-
+*/
 
 		[HttpPost]
 		public IActionResult Post([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)

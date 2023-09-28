@@ -5,7 +5,7 @@
                 <th>Service</th>
                 <th>Category</th>
                 <th>Date and Time</th>
-                <th>Edit</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
                 <td>{{ request.category }}</td>
                 <td>{{ transform(request.date)}}</td>
                 <td>
-                    <button class="btn btn-primary">Accept</button>
+                    <button class="btn btn-primary" (click)="modifyRequest(request)">Accept</button>
                 </td>
             </tr>
         </tbody>
