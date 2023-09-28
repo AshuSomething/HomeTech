@@ -57,22 +57,22 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 			return Ok(_response);
 		}
 
-		/*[HttpGet]
-		[Route("{id:int}")]
-		public ResponseDto GetAcceptRequestById(int id)
+		[HttpGet]
+		[Route("{id}")]
+		public IActionResult GetAcceptRequestById(string id)
 		{
 			try
 			{
-                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.Id == id);
-				_response.Result = _mapper.Map<AcceptRequestDto>(obj);
+				List<AcceptRequest> requests = _db.AcceptRequests.Where(u => u.TechnicianId == id).ToList();
+				_response.Result = _mapper.Map<List<AcceptRequestDto>>(requests);
 			}
 			catch (Exception ex)
 			{
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
-		}*/
+			return Ok(_response);
+		}
 
 		/*[HttpGet]
 		[Route("GetByCode/{code}")]
