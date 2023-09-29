@@ -39,6 +39,18 @@ export class TechnicianService {
     );
   }
 
+  deleteRequestsfromAcceptRequestAPI(Id: any) {
+    return this.http.delete(this._acceptRequestUrl + "/" + Id).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    )
+  }
+
+  addrequestInComplaintAPI(ComplaintDto: any) {
+    return this.http.post<any>(this._complaintApiUrl, ComplaintDto).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

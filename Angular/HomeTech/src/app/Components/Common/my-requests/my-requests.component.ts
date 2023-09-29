@@ -5,6 +5,8 @@ import { CustomerRequestDto } from 'src/app/Models/customeRequestDto';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { TechnicianService } from 'src/app/Services/technician.service';
+import { CreateRequestDto } from 'src/app/Models/createRequestDto';
+import { ComplaintDto } from 'src/app/Models/ComplaintDto';
 
 @Component({
   selector: 'app-my-requests',
@@ -48,6 +50,11 @@ export class MyRequestsComponent implements OnInit {
     return formattedDateAndTime;
   }
 
+  revokeRequest(request: any) {
+    this.addRequestinC_API(request);
+    this.deleteRequestfromAR_API(request);
+  }
+
   deleteRequest(request: any) {
     this._customeService.deleteRequest(request.complaintID).subscribe(
       (response) => {
@@ -61,6 +68,46 @@ export class MyRequestsComponent implements OnInit {
       }
     );
     console.log("request sent");
+  }
+
+  addRequestinC_API(request: any) {
+    var obj = new ComplaintDto(
+      request.service,
+      request.category,
+      request.date,
+      request.customerId,
+    )
+    console.log(request)
+    console.log(obj)
+    this._techService.addrequestInComplaintAPI(obj).subscribe(
+      (response) => {
+        console.log('POST request successful:', response);
+        // Handle the response data here
+      },
+      (error) => {
+        console.error('POST request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
+
+  }
+
+  deleteRequestfromAR_API(request: any) {
+    console.log(request.complaintID);
+    this._techService.deleteRequestsfromAcceptRequestAPI(request.complaintID).subscribe(
+      (response) => {
+        console.log('DELETE request successful:', response);
+        // Handle the response data here
+        window.location.reload();
+      },
+      (error) => {
+        console.error('DELETE request failed:', error);
+        // Handle errors here
+      }
+    );
+    console.log("request sent");
+
   }
 
 
