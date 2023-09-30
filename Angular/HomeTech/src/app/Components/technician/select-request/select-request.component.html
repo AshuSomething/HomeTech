@@ -1,4 +1,14 @@
 <div class="container mt-5">
+
+    <div class="form-group">
+        <label for="serviceFilter">Filter by Service:</label>
+        <select class="form-control" id="serviceFilter" [(ngModel)]="selectedService" (change)="filterRequests()">
+            <option value="">All Services</option>
+            <!-- Populate options from a list of services -->
+            <option *ngFor="let service of services" [value]="service">{{ service }}</option>
+        </select>
+    </div>
+
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -9,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let request of requests">
+            <tr *ngFor="let request of filteredRequests">
                 <td>{{ request.service }}</td>
                 <td>{{ request.category }}</td>
                 <td>{{ transform(request.date)}}</td>

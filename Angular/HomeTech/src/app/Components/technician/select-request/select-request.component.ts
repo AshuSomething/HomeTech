@@ -13,12 +13,20 @@ import { TechnicianService } from 'src/app/Services/technician.service';
 export class SelectRequestComponent {
   constructor(private _auth: AuthService, private _techService: TechnicianService, private _router: Router, private _route: ActivatedRoute) { }
   requests: CustomerRequestDto[] = [];
+  services: string[] = [];
+  selectedService: string = '';
+  filteredRequests: CustomerRequestDto[] = [];
   ngOnInit(): void {
     // Initialization logic goes here
-    this._techService.getRequests().subscribe((data: any) =>
-      this.requests = data.result
-      //console.log(data.result)
-    )
+    // this._techService.getRequests().subscribe((data: any) =>
+    //   this.requests = data.result
+    //console.log(data.result)
+
+    this._techService.getRequests().subscribe((data: any) => {
+      this.requests = data.result;
+      this.filteredRequests = this.requests; // Initialize filteredRequests
+      this.extractUniqueServices(); // Extract unique services
+    });
   }
   transform(value: string): string {
     if (!value) return '';
@@ -93,6 +101,20 @@ export class SelectRequestComponent {
     );
     console.log("request sent");
     console.log("comaplint deleted");
+  }
+
+  // Extract unique services from the requests
+  extractUniqueServices() {
+    this.services = Array.from(new Set(this.requests.map(request => request.service)));
+  }
+
+  // Filter requests based on the selected service
+  filterRequests() {
+    if (this.selectedService === '') {
+      this.filteredRequests = this.requests; // Show all requests when no service is selected
+    } else {
+      this.filteredRequests = this.requests.filter(request => request.service === this.selectedService);
+    }
   }
 
 }
