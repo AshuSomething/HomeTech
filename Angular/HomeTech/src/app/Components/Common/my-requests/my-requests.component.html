@@ -22,7 +22,7 @@
                     <button class="btn btn-danger" (click)="deleteRequest(request)">Delete</button>
                 </td>
                 <td *ngIf=" auth.getJwtData().role=== 'Technician'">
-                    <button class="btn btn-danger">Revoke</button>
+                    <button class="btn btn-danger" (click)="revokeRequest(request)">Revoke</button>
                 </td>
 
             </tr>

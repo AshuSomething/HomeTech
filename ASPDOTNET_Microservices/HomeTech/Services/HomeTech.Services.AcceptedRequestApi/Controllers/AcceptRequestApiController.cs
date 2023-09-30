@@ -113,7 +113,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 
 
 		[HttpPut]
-		public ResponseDto Put([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)
+		public IActionResult Put([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)
 		{
 			try
 			{
@@ -128,16 +128,16 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
+			return Ok(_response);
 		}
 		[HttpDelete]
 		[Route("{id:int}")]
-		public ResponseDto Delete(int id)
+		public IActionResult Delete(int id)
 		{
 			try
 			{
 
-                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.Id == id);
+                Model.AcceptRequest obj = _db.AcceptRequests.First(u => u.ComplaintId == id);
 
 				_db.AcceptRequests.Remove(obj);
 				_db.SaveChanges();
@@ -147,7 +147,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
+			return Ok(_response);
 		}
 	}
 }
