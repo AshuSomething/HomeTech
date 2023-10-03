@@ -10,7 +10,7 @@
         <!-- You can display other details as needed here -->
     </mat-card-content>
 
-    <td>
-        <button mat-raised-button color="primary" (click)="modifyRequest(request)">Accept</button>
+    <td *ngIf=" auth.getJwtData().role=== 'Technician'">
+        <button class="btn btn-danger" (click)="revokeRequest(request)">Revoke</button>
     </td>
 </mat-card>

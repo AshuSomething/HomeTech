@@ -24,6 +24,9 @@
                 <td *ngIf=" auth.getJwtData().role=== 'Technician'">
                     <button class="btn btn-danger" (click)="revokeRequest(request)">Revoke</button>
                 </td>
+                <td *ngIf=" auth.getJwtData().role=== 'Technician'">
+                    <button class="btn btn-primary" [routerLink]="['/view', request.complaintID]">View</button>
+                </td>
 
             </tr>
         </tbody>

@@ -50,11 +50,6 @@ export class MyRequestsComponent implements OnInit {
     return formattedDateAndTime;
   }
 
-  revokeRequest(request: any) {
-    this.addRequestinC_API(request);
-    this.deleteRequestfromAR_API(request);
-  }
-
   deleteRequest(request: any) {
     this._customeService.deleteRequest(request.complaintID).subscribe(
       (response) => {
@@ -70,6 +65,10 @@ export class MyRequestsComponent implements OnInit {
     console.log("request sent");
   }
 
+  revokeRequest(request: any) {
+    this.addRequestinC_API(request);
+    this.deleteRequestfromAR_API(request);
+  }
   addRequestinC_API(request: any) {
     var obj = new ComplaintDto(
       request.service,
