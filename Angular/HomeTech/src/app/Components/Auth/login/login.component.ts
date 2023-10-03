@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from '../../Common/popup/popup.component';
 
 @Component({
   selector: 'app-login',
@@ -20,20 +21,27 @@ export class LoginComponent {
   loginUser() {
     this._auth.loginUser(this.userModel).subscribe(
       (response) => {
-        console.log('POST request successful:', response);
-        // Handle the response data here
-        localStorage.setItem('token', response.result.token);
-        this._router.navigate(['/']);
-      },
-      (error) => {
-        console.error('POST request failed:', error);
-        this.modalService.open('Either password or username is incorrect');
-        // Handle errors here
+        if (response.isSuccess) {
+          console.log('POST request successful:', response);
+          // Handle the response data here
+          localStorage.setItem('token', response.result.token);
+          this._router.navigate(['/']);
+        } else {
+          this.openPopup(response.isSuccess, response.message);
+        }
+
       }
     );
   }
 
   resetUserForm(userForm: NgForm) {
     userForm.resetForm();;
+  }
+
+  openPopup(successful: boolean, message: string) {
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.title = 'Login Failed';
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.isSuccess = successful;
   }
 }
