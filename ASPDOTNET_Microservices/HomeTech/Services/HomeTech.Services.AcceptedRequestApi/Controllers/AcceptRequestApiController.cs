@@ -24,14 +24,14 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 			_mapper = mapper;
 			_response = new ResponseDto();
 		}
-		
-	/*	[HttpGet]
+
+		/*[HttpGet]
 		[Route("{id:int}")]
 		public object GetRequestById(int id)
 		{
 			try
 			{
-                Model.AcceptRequest objList = _db.AcceptRequests.First(u => u.AcceptRequestId == id);
+				Model.AcceptRequest objList = _db.AcceptRequests.First(u => u.Id == id);
 				return objList;
 			}
 			catch (Exception ex)
@@ -42,6 +42,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 		}*/
 
 		[HttpGet]
+		[Route("all")]
 		public IActionResult Get()
 		{
 			try
@@ -74,23 +75,33 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 			return Ok(_response);
 		}
 
-		/*[HttpGet]
-		[Route("GetByCode/{code}")]
-		public ResponseDto GetAcceptedRequstedByTechnicianId(string code)
+		[HttpGet]
+		[Route("Comaplaint/ComplaintId")]
+		public IActionResult GetAcceptRequestByComplaintId(int complaintId)
 		{
 			try
 			{
-				//AcceptRequest obj = _db.AcceptRequests.First(u => u.AcceptRequestCode.ToLower() == code.ToLower());
-				//_response.Result = _mapper.Map<AcceptRquestDto>(obj);
+				// Assuming that ComplaintId is a unique identifier.
+				AcceptRequest request = _db.AcceptRequests.FirstOrDefault(u => u.ComplaintId == complaintId);
+
+				if (request != null)
+				{
+					_response.Result = _mapper.Map<AcceptRequestDto>(request);
+				}
+				else
+				{
+					_response.IsSuccess = false;
+					_response.Message = "No AcceptRequest found for the specified ComplaintId.";
+				}
 			}
 			catch (Exception ex)
 			{
 				_response.IsSuccess = false;
 				_response.Message = ex.Message;
 			}
-			return _response;
+			return Ok(_response);
 		}
-*/
+
 
 		[HttpPost]
 		public IActionResult Post([FromBody] Model.Dto.AcceptRequestDto acceptRequestDto)
