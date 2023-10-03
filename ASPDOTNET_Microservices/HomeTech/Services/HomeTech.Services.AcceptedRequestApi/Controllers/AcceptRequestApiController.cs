@@ -76,7 +76,7 @@ namespace HomeTech.Services.AcceptedRequestApi.Controllers
 		}
 
 		[HttpGet]
-		[Route("Comaplaint/ComplaintId")]
+		[Route("Complaint/ComplaintId")]
 		public IActionResult GetAcceptRequestByComplaintId(int complaintId)
 		{
 			try

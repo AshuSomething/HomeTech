@@ -26,6 +26,12 @@ export class TechnicianService {
     )
   }
 
+  getComaplintfromAcceptRequestAPI(complaintID: any) {
+    return this.http.get<any>(`${this._acceptRequestUrl}/Complaint/ComplaintId?complaintId=${complaintID}`).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    )
+  }
+
   postRequest(AcceptRequestDto: any): Observable<any> {
     return this.http.post<any>(this._acceptRequestUrl, AcceptRequestDto).pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
