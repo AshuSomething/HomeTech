@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using HomeTech.Services.ComplaintAPI.Data;
 using HomeTech.Services.ComplaintAPI.Models;
 using HomeTech.Services.ComplaintAPI.Models.DTO;
@@ -39,6 +40,32 @@ namespace HomeTech.Services.ComplaintAPI.Controllers
 				response.IsSuccess = false;
 				response.Message = e.Message;
 
+			}
+			return Ok(response);
+		}
+		[HttpGet]
+		[Route("Complaint/ComplaintId")]
+		public IActionResult GetCaomplintByComplaintId(int complaintId)
+		{
+			try
+			{
+				// Assuming that ComplaintId is a unique identifier.
+				Complaint request = _db.Complaints.FirstOrDefault(u => u.ComplaintID == complaintId);
+
+				if (request != null)
+				{
+					response.Result = _mapper.Map<ComplaintDTO>(request);
+				}
+				else
+				{
+					response.IsSuccess = false;
+					response.Message = "No AcceptRequest found for the specified ComplaintId.";
+				}
+			}
+			catch (Exception ex)
+			{
+				response.IsSuccess = false;
+				response.Message = ex.Message;
 			}
 			return Ok(response);
 		}

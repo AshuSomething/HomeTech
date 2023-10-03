@@ -12,6 +12,7 @@ import { HomeComponent } from './Components/Common/home/home.component';
 import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
 import { SelectRequestComponent } from './Components/technician/select-request/select-request.component';
 import { TechnicianGaurd } from './Gaurds/technician.guard';
+import { ViewDetailsComponent } from './Components/technician/view-details/view-details.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'updateUser', component: UpdateUserComponent, canActivate: [AuthGuard] },
   { path: 'createRequest', component: CreateRequestComponent, canActivate: [CoustmerGuard] },
   { path: 'updateRequest', component: UpdateRequestComponent, canActivate: [CoustmerGuard] },
-  { path: "selectRequest", component: SelectRequestComponent, canActivate: [TechnicianGaurd] }
+  { path: "selectRequest", component: SelectRequestComponent, canActivate: [TechnicianGaurd] },
+  { path: "viewDetails/:complaintId", component: ViewDetailsComponent, canActivate: [TechnicianGaurd] }
 
 ];
 

@@ -35,6 +35,7 @@ import { HomeComponent } from './Components/Common/home/home.component';
 import { UpdateUserComponent } from './Components/Common/update-user/update-user.component';
 import { SelectRequestComponent } from './Components/technician/select-request/select-request.component';
 import { PopupComponent } from './Components/Common/popup/popup.component';
+import { ViewDetailsComponent } from './Components/technician/view-details/view-details.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PopupComponent } from './Components/Common/popup/popup.component';
     HomeComponent,
     UpdateUserComponent,
     SelectRequestComponent,
-    PopupComponent
+    PopupComponent,
+    ViewDetailsComponent
   ],
   imports: [
     BrowserModule,
